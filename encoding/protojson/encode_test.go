@@ -2271,6 +2271,45 @@ func TestMarshal(t *testing.T) {
     }
   ]
 }`,
+	}, {
+		desc: "Int64AsNumbers is true",
+		mo: protojson.MarshalOptions{
+			Int64AsNumbers: true,
+		},
+		input: &pb2.Scalars{
+			OptBool:     proto.Bool(false),
+			OptInt32:    proto.Int32(0),
+			OptInt64:    proto.Int64(0),
+			OptUint32:   proto.Uint32(0),
+			OptUint64:   proto.Uint64(0),
+			OptSint32:   proto.Int32(0),
+			OptSint64:   proto.Int64(0),
+			OptFixed32:  proto.Uint32(0),
+			OptFixed64:  proto.Uint64(0),
+			OptSfixed32: proto.Int32(0),
+			OptSfixed64: proto.Int64(0),
+			OptFloat:    proto.Float32(0),
+			OptDouble:   proto.Float64(0),
+			OptBytes:    []byte{},
+			OptString:   proto.String(""),
+		},
+		want: `{
+  "optBool": false,
+  "optInt32": 0,
+  "optInt64": 0,
+  "optUint32": 0,
+  "optUint64": 0,
+  "optSint32": 0,
+  "optSint64": 0,
+  "optFixed32": 0,
+  "optFixed64": 0,
+  "optSfixed32": 0,
+  "optSfixed64": 0,
+  "optFloat": 0,
+  "optDouble": 0,
+  "optBytes": "",
+  "optString": ""
+}`,
 	}}
 
 	for _, tt := range tests {
